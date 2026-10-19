@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 480" role="img" aria-label="A young woman reading peacefully under a tree on a sunny hill">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E9E2FF"/><stop offset="0.6" stop-color="#FFE7DA"/><stop offset="1" stop-color="#FFF4E0"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFF3B8"/><stop offset="0.7" stop-color="#FFE89A"/><stop offset="1" stop-color="#FFD9A0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CDE6D1"/><stop offset="1" stop-color="#A9CFB0"/></linearGradient>
+    <linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D7EEDB"/><stop offset="1" stop-color="#8FBF99"/></linearGradient>
+    <clipPath id="blob"><path d="M280 18c92 0 190 36 240 112s42 190-8 262-150 82-232 82S94 466 46 394 -6 222 40 140 188 18 280 18z"/></clipPath>
+  </defs>
+  <g clip-path="url(#blob)">
+    <rect width="560" height="480" fill="url(#sky)"/>
+    <circle cx="410" cy="130" r="90" fill="url(#sun)"/>
+    <circle cx="410" cy="130" r="42" fill="#FFE89A"/>
+    <g fill="#fff" opacity="0.9">
+      <ellipse cx="140" cy="110" rx="58" ry="20"/><ellipse cx="175" cy="96" rx="36" ry="22"/><ellipse cx="112" cy="100" rx="26" ry="16"/>
+      <ellipse cx="330" cy="70" rx="40" ry="13"/><ellipse cx="352" cy="61" rx="24" ry="14"/>
+    </g>
+    <path d="M-20 330 C 90 270 200 290 300 320 S 480 300 600 280 V 500 H -20 Z" fill="url(#hill1)"/>
+    <path d="M-20 380 C 120 340 250 360 340 380 S 500 360 600 350 V 500 H -20 Z" fill="url(#hill2)"/>
+    <!-- tree -->
+    <path d="M150 380 C 152 330 148 290 158 250 L 172 250 C 176 300 172 340 178 380 Z" fill="#9B7E6B"/>
+    <path d="M162 280 C 150 268 140 262 126 262" stroke="#9B7E6B" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <g>
+      <circle cx="165" cy="215" r="62" fill="#9CC9A5"/><circle cx="118" cy="240" r="40" fill="#D7EEDB"/>
+      <circle cx="210" cy="238" r="42" fill="#A8D1B0"/><circle cx="160" cy="175" r="40" fill="#D7EEDB"/>
+      <circle cx="140" cy="200" r="6" fill="#F9DCEB"/><circle cx="190" cy="190" r="5" fill="#FFF9F2"/>
+      <circle cx="205" cy="230" r="6" fill="#F9DCEB"/><circle cx="125" cy="240" r="5" fill="#FFF9F2"/>
+    </g>
+    <!-- person -->
+    <g transform="translate(230 290)">
+      <ellipse cx="60" cy="98" rx="80" ry="10" fill="#7FB08A" opacity="0.35"/>
+      <path d="M20 95 C 25 70 45 62 70 66 L 110 72 C 122 74 124 92 112 95 Z" fill="#B77ACB"/>
+      <path d="M30 60 C 26 30 40 10 62 10 C 82 10 90 30 86 60 L 80 82 L 34 82 Z" fill="#F9DCEB"/>
+      <path d="M36 40 C 30 60 32 78 40 84 L 80 84 C 88 70 88 52 82 38 C 70 46 50 48 36 40 Z" fill="#D7A2E5"/>
+      <circle cx="60" cy="-12" r="22" fill="#E8B79E"/>
+      <path d="M38 -10 C 34 -40 84 -44 84 -12 C 84 2 90 18 80 26 C 82 10 78 -6 70 -18 C 60 -6 48 -10 38 -10 Z" fill="#4A3B5C"/>
+      <path d="M38 -10 C 34 6 36 22 44 28 C 40 12 42 0 46 -8 Z" fill="#4A3B5C"/>
+      <path d="M42 52 L 78 48 L 82 72 L 46 76 Z" fill="#FFF9F2" stroke="#E7DCCB" stroke-width="2"/>
+      <path d="M62 50 L 64 74" stroke="#E7DCCB" stroke-width="2"/>
+      <path d="M52 -10 q3 3 6 0 M64 -10 q3 3 6 0" stroke="#4A3B5C" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M56 0 q5 4 10 0" stroke="#C47C68" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- flowers -->
+    <g>
+      <g transform="translate(70 400)"><path d="M0 0 V-24" stroke="#7FB08A" stroke-width="3"/><g fill="#F9DCEB"><circle cx="0" cy="-30" r="6"/><circle cx="-7" cy="-24" r="6"/><circle cx="7" cy="-24" r="6"/><circle cx="-4" cy="-17" r="6"/><circle cx="4" cy="-17" r="6"/></g><circle cx="0" cy="-23" r="4" fill="#FFE89A"/></g>
+      <g transform="translate(110 420)"><path d="M0 0 V-18" stroke="#7FB08A" stroke-width="3"/><g fill="#D7A2E5"><circle cx="0" cy="-24" r="5"/><circle cx="-6" cy="-19" r="5"/><circle cx="6" cy="-19" r="5"/><circle cx="-3" cy="-13" r="5"/><circle cx="3" cy="-13" r="5"/></g><circle cx="0" cy="-18" r="3" fill="#FFE89A"/></g>
+      <g transform="translate(440 410)"><path d="M0 0 V-26" stroke="#7FB08A" stroke-width="3"/><g fill="#FFE89A"><circle cx="0" cy="-32" r="6"/><circle cx="-7" cy="-26" r="6"/><circle cx="7" cy="-26" r="6"/><circle cx="-4" cy="-19" r="6"/><circle cx="4" cy="-19" r="6"/></g><circle cx="0" cy="-25" r="4" fill="#F9DCEB"/></g>
+      <g transform="translate(480 430)"><path d="M0 0 V-16" stroke="#7FB08A" stroke-width="3"/><g fill="#F9DCEB"><circle cx="0" cy="-21" r="5"/><circle cx="-5" cy="-17" r="5"/><circle cx="5" cy="-17" r="5"/></g><circle cx="0" cy="-16" r="3" fill="#FFE89A"/></g>
+      <path d="M380 440 q10 -30 30 -36 q-6 24 -30 36z" fill="#9CC9A5"/><path d="M400 445 q-4 -26 -24 -34 q0 22 24 34z" fill="#D7EEDB"/>
+    </g>
+    <!-- birds -->
+    <path d="M250 120 q8 -8 16 0 q8 -8 16 0" stroke="#B77ACB" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M290 150 q6 -6 12 0 q6 -6 12 0" stroke="#D7A2E5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

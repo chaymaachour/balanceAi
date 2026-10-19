@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BalanceAI — A little more balance, one day at a time</title>
+  <meta name="description" content="BalanceAI: your personal space to breathe, reset, and find balance." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/school.css" />
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true">
+    <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  </div>
+
+  <header class="nav">
+    <a class="brand" href="#home" aria-label="BalanceAI home">
+      <img src="assets/favicon.svg" alt="" width="36" height="36" />
+      <span>Balance<strong>AI</strong></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><i data-lucide="menu"></i></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" data-route="home"><i data-lucide="home"></i><span data-i18n="nav.home">Home</span></a>
+      <a href="#checkin" data-route="checkin"><i data-lucide="heart-handshake"></i><span data-i18n="nav.checkin">Check-in</span></a>
+      <a href="#planner" data-route="planner"><i data-lucide="calendar-heart"></i><span data-i18n="nav.planner">Planner</span></a>
+      <a href="#relax" data-route="relax"><i data-lucide="wind"></i><span data-i18n="nav.relax">Relax</span></a>
+      <a href="#calendar" data-route="calendar"><i data-lucide="calendar-days"></i><span data-i18n="nav.calendar">Calendar</span></a>
+      <a href="#exams" data-route="exams"><i data-lucide="graduation-cap"></i><span data-i18n="nav.exams">Exams</span></a>
+      <a href="#revisions" data-route="revisions"><i data-lucide="book-open-check"></i><span data-i18n="nav.revisions">Revisions</span></a>
+      <a href="#chat" data-route="chat"><i data-lucide="message-circle-heart"></i><span data-i18n="nav.chat">Assistant</span></a>
+      <a href="#history" data-route="history"><i data-lucide="sprout"></i><span data-i18n="nav.history">My progress</span></a>
+    </nav>
+    <div class="nav-tools">
+      <a href="#notifications" class="icon-link bell" id="bellBtn" data-route="notifications" aria-label="Notifications" title="Notifications"><i data-lucide="bell"></i><span class="bell-count" id="bellCount" hidden></span></a>
+      <a href="#settings" class="icon-link" data-route="settings" aria-label="Settings" title="Settings"><i data-lucide="settings"></i></a>
+      <span class="mode-badge" id="modeBadge" title="">…</span>
+      <button class="icon-link" id="logoutBtn" type="button" aria-label="Sign out" title="Sign out"><i data-lucide="log-out"></i></button>
+      <button class="lang-btn" id="langToggle" aria-label="Change language">FR</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================ HOME ============================ -->
+    <section class="view" id="view-home">
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow"><i data-lucide="sun"></i><span data-i18n="home.eyebrow">Your personal space to breathe, reset, and find balance</span></p>
+          <h1>Balance<span class="grad">AI</span></h1>
+          <p class="tagline" data-i18n="home.tagline">A little more balance, one day at a time.</p>
+          <p class="greeting" id="greeting" data-i18n="home.greeting">Hello! How are you feeling today?</p>
+          <p class="lead" data-i18n="home.lead">Share how you feel in your own words — English, French, Derja or Arabizi. BalanceAI gently helps you understand what is weighing on you, turns it into a realistic plan, and gives you a calm place to breathe.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#checkin"><i data-lucide="sparkles"></i><span data-i18n="home.cta">Start my wellness check-in</span></a>
+            <a class="btn btn-soft btn-lg" href="#relax"><i data-lucide="wind"></i><span data-i18n="home.cta2">Take a breathing break</span></a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="hero-art-fallback" aria-hidden="true"><span class="sun"></span><span class="hill h1"></span><span class="hill h2"></span></div>
+          <img src="assets/hero.svg" alt="A young woman reading peacefully under a tree on a sunny hill" onerror="this.style.display='none'" />
+          <div class="float-card fc1"><span>🌿</span><span data-i18n="home.float1">Breathe in… breathe out</span></div>
+          <div class="float-card fc2"><span>☀️</span><span data-i18n="home.float2">One small step at a time</span></div>
+        </div>
+      </div>
+
+      <div class="dash card glass" id="dashboard">
+        <div class="dash-head">
+          <h2 data-i18n="dash.title">Your day at a glance</h2>
+          <a href="#history" class="link" data-i18n="dash.more">See my progress →</a>
+        </div>
+        <div class="dash-grid" id="dashStats"></div>
+      </div>
+
+      <div class="card school-dash" id="schoolDash"></div>
+
+      <h2 class="section-title" data-i18n="home.howTitle">How it works</h2>
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><div><h3 data-i18n="home.s1t">Check in</h3><p data-i18n="home.s1p">Pick a mood and, if you want, describe your day in your own words.</p></div></div>
+        <div class="step"><span class="step-num">2</span><div><h3 data-i18n="home.s2t">Understand</h3><p data-i18n="home.s2p">AI gently reflects possible emotions, stress signals and practical challenges.</p></div></div>
+        <div class="step"><span class="step-num">3</span><div><h3 data-i18n="home.s3t">Plan & breathe</h3><p data-i18n="home.s3p">Get a kind, realistic plan for your day and take calming breaks.</p></div></div>
+      </div>
+
+      <div class="features">
+        <a class="feature card f-lav" href="#checkin">
+          <span class="feature-icon"><i data-lucide="heart"></i></span>
+          <h3 data-i18n="home.f1t">Emotional awareness</h3>
+          <p data-i18n="home.f1p">Put words on what you feel. AI highlights what may be causing stress — tentatively, never as a diagnosis.</p>
+        </a>
+        <a class="feature card f-peach" href="#planner">
+          <span class="feature-icon"><i data-lucide="list-checks"></i></span>
+          <h3 data-i18n="home.f2t">Personalized planning</h3>
+          <p data-i18n="home.f2p">Exams, thesis, job search, work or family duties: get small, achievable steps with real breaks.</p>
+        </a>
+        <a class="feature card f-sage" href="#relax">
+          <span class="feature-icon"><i data-lucide="flower-2"></i></span>
+          <h3 data-i18n="home.f3t">Relaxation</h3>
+          <p data-i18n="home.f3p">Guided breathing and a 5-4-3-2-1 grounding exercise to reset your body and mind in minutes.</p>
+        </a>
+      </div>
+
+      <div class="disclaimer card">
+        <i data-lucide="shield-check"></i>
+        <p data-i18n-html="home.disclaimer"><strong>BalanceAI offers general well-being support, not medical diagnosis or therapy.</strong> If you feel in danger or overwhelmed for a long time, please reach out to a qualified professional, your university counselling service or emergency services (Tunisia: SAMU 190).</p>
+      </div>
+    </section>
+
+    <!-- ============================ CHECK-IN ============================ -->
+    <section class="view" id="view-checkin" hidden>
+      <div class="page-head">
+        <h1 data-i18n="checkin.title">Wellness check-in</h1>
+        <p data-i18n="checkin.sub">Take a breath. There are no wrong answers here.</p>
+      </div>
+
+      <div class="card checkin-card">
+        <h2 class="q"><span class="q-num">1</span><span data-i18n="checkin.q1">How are you feeling right now?</span></h2>
+        <div class="mood-grid" id="moodGrid" role="radiogroup"></div>
+
+        <h2 class="q"><span class="q-num">2</span><span data-i18n="checkin.q2">What is contributing to your stress today?</span> <em data-i18n="common.optional">(optional)</em></h2>
+        <div class="chips" id="contextChips"></div>
+
+        <h2 class="q"><span class="q-num">3</span><span data-i18n="checkin.q3">Tell me a little more</span> <em data-i18n="common.optional">(optional)</em></h2>
+        <p class="hint" data-i18n="checkin.hint">Write in English, French, Tunisian Arabic or Arabizi — whatever feels natural.</p>
+        <textarea id="checkinText" rows="5" maxlength="2000" data-i18n-ph="checkin.placeholder" placeholder="e.g. I have two exams next week and my PFE report is due, I can't sleep well and I don't know where to start…"></textarea>
+        <div class="text-meta">
+          <div class="examples"><span data-i18n="checkin.examples">Try an example:</span> <span id="examples"></span></div>
+          <span class="char-count" id="charCount">0 / 2000</span>
+        </div>
+        <label class="check"><input type="checkbox" id="saveNote" /><span data-i18n="checkin.saveNote">Save my note on this device (only the mood is saved otherwise)</span></label>
+        <div class="form-error" id="checkinError" role="alert"></div>
+        <button class="btn btn-primary btn-lg" id="analyzeBtn"><i data-lucide="sparkles"></i><span data-i18n="checkin.submit">Analyze my check-in</span></button>
+      </div>
+
+      <div id="analysisResult" class="analysis" hidden></div>
+    </section>
+
+    <!-- ============================ PLANNER ============================ -->
+    <section class="view" id="view-planner" hidden>
+      <div class="page-head">
+        <h1 data-i18n="planner.title">My gentle daily plan</h1>
+        <p data-i18n="planner.sub">List what's on your plate. We'll build a realistic plan with breaks — not a rigid schedule.</p>
+      </div>
+      <div class="planner-layout">
+        <div class="card planner-form">
+          <h2><i data-lucide="list-todo"></i><span data-i18n="planner.tasks">Tasks & responsibilities</span></h2>
+          <div class="task-head"><span data-i18n="planner.colTask">Task</span><span data-i18n="planner.colPriority">Priority</span><span data-i18n="planner.colMinutes">Minutes</span><span data-i18n="planner.colDeadline">Deadline</span><span></span></div>
+          <div id="taskList" class="task-list"></div>
+          <button class="btn btn-ghost" id="addTask"><i data-lucide="plus"></i><span data-i18n="planner.add">Add a task</span></button>
+
+          <div class="settings-grid">
+            <label><span data-i18n="planner.available">Time available</span>
+              <select id="availMinutes">
+                <option value="60">1 h</option><option value="90">1 h 30</option><option value="120">2 h</option>
+                <option value="180">3 h</option><option value="240" selected>4 h</option><option value="300">5 h</option>
+                <option value="360">6 h</option><option value="480">8 h</option>
+              </select>
+            </label>
+            <label><span data-i18n="planner.start">Start time</span><input type="time" id="startTime" /></label>
+            <label><span data-i18n="planner.break">Break length</span>
+              <select id="breakMinutes"><option value="5">5 min</option><option value="10" selected>10 min</option><option value="15">15 min</option><option value="20">20 min</option></select>
+            </label>
+          </div>
+          <label class="stress-label"><span data-i18n="planner.stress">How stressed do you feel? (1 = calm, 10 = very stressed)</span>
+            <div class="stress-row"><input type="range" id="stressLevel" min="1" max="10" value="5" /><output id="stressValue">5</output></div>
+          </label>
+          <div class="form-error" id="plannerError" role="alert"></div>
+          <button class="btn btn-primary btn-lg" id="planBtn"><i data-lucide="wand-sparkles"></i><span data-i18n="planner.generate">Generate my plan</span></button>
+        </div>
+        <div id="planResult" class="plan-result">
+          <div class="empty-state card">
+            <div class="empty-art">🌱</div>
+            <h3 data-i18n="planner.emptyT">Your plan will bloom here</h3>
+            <p data-i18n="planner.emptyP">Add a few tasks, tell us how much time you have and how you feel, then generate your plan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ RELAX ============================ -->
+    <section class="view" id="view-relax" hidden>
+      <div class="page-head">
+        <h1 data-i18n="relax.title">Breathe & reset</h1>
+        <p data-i18n="relax.sub">Follow the circle. You can stop at any time.</p>
+      </div>
+      <div class="relax-layout">
+        <div class="card breath-card">
+          <div class="breath-options">
+            <div class="seg" id="patternSelect" role="radiogroup"></div>
+            <div class="seg" id="durationSelect" role="radiogroup"></div>
+          </div>
+          <div class="breath-stage">
+            <div class="ring r1"></div><div class="ring r2"></div>
+            <div class="breath-circle" id="breathCircle">
+              <span class="breath-text" id="breathText" data-i18n="relax.ready">Ready?</span>
+              <span class="breath-count" id="breathCount"></span>
+            </div>
+          </div>
+          <div class="breath-timer" id="breathTimer">01:00</div>
+          <div class="breath-controls">
+            <button class="btn btn-primary" id="breathStart"><i data-lucide="play"></i><span data-i18n="relax.start">Start</span></button>
+            <button class="btn btn-soft" id="breathPause" disabled><i data-lucide="pause"></i><span data-i18n="relax.pause">Pause</span></button>
+            <button class="btn btn-ghost" id="breathReset"><i data-lucide="rotate-ccw"></i><span data-i18n="relax.restart">Restart</span></button>
+          </div>
+          <p class="breath-msg" id="breathMsg" aria-live="polite"></p>
+        </div>
+        <div class="card ground-card">
+          <h2><i data-lucide="leaf"></i><span data-i18n="relax.groundTitle">5-4-3-2-1 grounding</span></h2>
+          <p class="hint" data-i18n="relax.groundSub">A short exercise to come back to the present moment using your senses.</p>
+          <div class="ground-step" id="groundStep"></div>
+          <div class="ground-dots" id="groundDots"></div>
+          <div class="breath-controls">
+            <button class="btn btn-ghost" id="groundPrev"><i data-lucide="chevron-left"></i><span data-i18n="relax.prev">Back</span></button>
+            <button class="btn btn-primary" id="groundNext"><span data-i18n="relax.next">Next</span><i data-lucide="chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ HISTORY ============================ -->
+    <section class="view" id="view-history" hidden>
+      <div class="page-head">
+        <h1 data-i18n="history.title">My progress</h1>
+        <p data-i18n="history.sub">Only what you recorded, stored privately on this device.</p>
+      </div>
+      <div class="card habits-card">
+        <h2><i data-lucide="sprout"></i><span data-i18n="history.habitsTitle">Today's healthy habits</span></h2>
+        <div class="habit-toggles" id="habitToggles"></div>
+      </div>
+      <div id="historyEmpty" class="empty-state card" hidden>
+        <div class="empty-art">🌸</div>
+        <h3 data-i18n="history.emptyT">Your garden is ready to grow</h3>
+        <p data-i18n="history.emptyP">Record your first check-in to start seeing your mood week.</p>
+        <a class="btn btn-primary" href="#checkin"><i data-lucide="sparkles"></i><span data-i18n="home.cta">Start my wellness check-in</span></a>
+      </div>
+      <div id="historyContent" hidden>
+        <div class="stats-grid" id="historyStats"></div>
+        <div class="history-grid">
+          <div class="card">
+            <h2><i data-lucide="bar-chart-3"></i><span data-i18n="history.chartTitle">Mood this week</span></h2>
+            <div id="moodChart" class="mood-chart"></div>
+          </div>
+          <div class="card">
+            <h2><i data-lucide="lightbulb"></i><span data-i18n="history.patterns">Gentle observations</span></h2>
+            <ul id="patterns" class="patterns"></ul>
+            <h3 class="mini-title" data-i18n="history.habitWeek">Habits this week</h3>
+            <div id="habitWeek" class="habit-week"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h2><i data-lucide="history"></i><span data-i18n="history.recent">Recent check-ins</span></h2>
+          <ul id="recentList" class="recent-list"></ul>
+        </div>
+      </div>
+    </section>
+      <!-- ============================ CALENDAR ============================ -->
+    <section class="view" id="view-calendar" hidden>
+      <div class="page-head">
+        <h1 data-i18n="cal.title">My calendar</h1>
+        <p data-i18n="cal.sub">Your week at a glance: classes, clubs, revision sessions and exams.</p>
+      </div>
+      <div class="card cal-toolbar">
+        <div class="cal-nav">
+          <button class="icon-btn" id="calPrev" aria-label="Previous week"><i data-lucide="chevron-left"></i></button>
+          <strong id="calRange"></strong>
+          <button class="icon-btn" id="calNext" aria-label="Next week"><i data-lucide="chevron-right"></i></button>
+          <button class="btn btn-ghost btn-sm" id="calToday" data-i18n="cal.today">This week</button>
+        </div>
+        <button class="btn btn-primary" id="calEditBtn"><i data-lucide="pencil"></i><span data-i18n="cal.edit">Edit my timetable</span></button>
+      </div>
+      <div class="card cal-empty" id="calEmpty" hidden>
+        <div class="empty-art">🗓️</div>
+        <h3 data-i18n="cal.emptyT">No timetable yet</h3>
+        <p data-i18n="cal.emptyP">Start from a ready-made Lycée or Université timetable, then adapt it to your real hours.</p>
+        <div class="tt-templates center">
+          <button class="btn btn-soft btn-sm" data-template="lycee"><span data-i18n="tt.useLycee">Use the Lycée template</span></button>
+          <button class="btn btn-soft btn-sm" data-template="universite"><span data-i18n="tt.useUni">Use the Université template</span></button>
+        </div>
+      </div>
+      <div class="cal-legend">
+        <span class="lg lg-course" data-i18n="kind.course">Class</span><span class="lg lg-club" data-i18n="kind.club">Club</span>
+        <span class="lg lg-activity" data-i18n="kind.activity">Activity</span><span class="lg lg-session" data-i18n="cal.lgSession">Revision</span>
+        <span class="lg lg-exam" data-i18n="cal.lgExam">Exam</span><span class="lg-hint" data-i18n="cal.hint">Tap a day to cancel a class, move it or mark a day without classes.</span>
+      </div>
+      <div class="week-grid" id="weekGrid"></div>
+      <div class="card day-detail" id="dayDetail" hidden></div>
+
+      <div class="card tt-editor" id="ttEditor" hidden>
+        <div class="dd-head"><h2><i data-lucide="pencil"></i><span data-i18n="tt.title">Edit my timetable</span></h2>
+          <button class="icon-btn" id="ttClose" aria-label="Close"><i data-lucide="x"></i></button></div>
+        <div class="tt-layout">
+          <form id="entryForm" class="entry-form" novalidate>
+            <h3 id="entryFormTitle" data-i18n="tt.add">Add a class or activity</h3>
+            <label class="field"><span data-i18n="tt.name">Name / subject</span><input name="title" maxlength="80" required /></label>
+            <div class="form-row">
+              <label class="field"><span data-i18n="tt.kind">Type</span>
+                <select name="kind"><option value="course" data-i18n="kind.course">Class</option><option value="club" data-i18n="kind.club">Club</option><option value="activity" data-i18n="kind.activity">Activity</option><option value="break" data-i18n="kind.break">Break</option></select></label>
+              <label class="field"><span data-i18n="tt.repeat">Repeat</span>
+                <select name="recurring"><option value="1" data-i18n="tt.weekly">Every week</option><option value="0" data-i18n="tt.once">Only once</option></select></label>
+            </div>
+            <div class="form-row">
+              <label class="field" data-when="weekly"><span data-i18n="tt.day">Day</span><select name="day" id="entryDay"></select></label>
+              <label class="field" data-when="once" hidden><span data-i18n="tt.date">Date</span><input type="date" name="date" /></label>
+              <label class="field"><span data-i18n="tt.start">Start</span><input type="time" name="start" required /></label>
+              <label class="field"><span data-i18n="tt.end">End</span><input type="time" name="end" required /></label>
+            </div>
+            <label class="field"><span data-i18n="tt.location">Place (optional)</span><input name="location" maxlength="80" /></label>
+            <div class="form-error" id="entryError" role="alert"></div>
+            <div class="modal-actions">
+              <button type="button" class="btn btn-ghost" id="entryCancel" data-i18n="s.cancel">Cancel</button>
+              <button class="btn btn-primary" type="submit" id="entrySave"><i data-lucide="save"></i><span data-i18n="s.save">Save</span></button>
+            </div>
+          </form>
+          <div class="tt-list-wrap">
+            <div class="tt-templates"><span data-i18n="tt.templates">Ready-made timetable:</span>
+              <button class="btn btn-ghost btn-sm" data-template="lycee" data-i18n="profile.lycee">Lycée</button>
+              <button class="btn btn-ghost btn-sm" data-template="universite" data-i18n="profile.universite">Université</button></div>
+            <div id="ttList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ EXAMS ============================ -->
+    <section class="view" id="view-exams" hidden>
+      <div class="page-head">
+        <h1 data-i18n="exam.pageTitle">My exams</h1>
+        <p data-i18n="exam.pageSub">Add your exams: BalanceAI builds a realistic revision plan around your real free time.</p>
+      </div>
+      <div class="exams-layout">
+        <form class="card exam-form" id="examForm" novalidate>
+          <h2><i data-lucide="graduation-cap"></i><span id="examFormTitle" data-i18n="exam.add">Add an exam</span></h2>
+          <label class="field"><span data-i18n="exam.subject">Subject *</span><input name="subject" maxlength="80" required /></label>
+          <label class="field"><span data-i18n="exam.nameLabel">Exam name (optional)</span><input name="title" maxlength="120" data-i18n-ph="exam.titlePh" /></label>
+          <div class="form-row">
+            <label class="field"><span data-i18n="exam.date">Date</span><input type="date" name="date" /></label>
+            <label class="field"><span data-i18n="exam.time">Time</span><input type="time" name="time" /></label>
+          </div>
+          <div class="form-row">
+            <label class="field"><span data-i18n="exam.priority">Priority</span>
+              <select name="priority"><option value="high" data-i18n="prio.high">High</option><option value="medium" selected data-i18n="prio.medium">Medium</option><option value="low" data-i18n="prio.low">Low</option></select></label>
+            <label class="field"><span data-i18n="exam.perDay">Max revision per day</span>
+              <select name="minutes_per_day"><option value="0" data-i18n="exam.auto">Automatic</option><option value="30">30 min</option><option value="45">45 min</option><option value="60">1 h</option><option value="90">1 h 30</option><option value="120">2 h</option></select></label>
+          </div>
+          <label class="field"><span data-i18n="exam.prepLabel">How prepared do you feel?</span>
+            <div class="stress-row"><input type="range" name="preparation" min="0" max="100" step="10" value="20" /><output id="prepValue">20%</output></div></label>
+          <label class="field"><span data-i18n="exam.chapters">Chapters concerned (comma separated)</span><textarea name="chapters" rows="2" maxlength="600"></textarea></label>
+          <label class="field"><span data-i18n="exam.difficultLabel">Difficult chapters</span><input name="difficult" maxlength="300" /></label>
+          <div class="form-error" id="examError" role="alert"></div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-ghost" id="examCancel" hidden data-i18n="s.cancel">Cancel</button>
+            <button class="btn btn-primary" id="examSave" type="submit"><i data-lucide="save"></i><span data-i18n="s.save">Save</span></button>
+          </div>
+        </form>
+        <div id="examList" class="exam-list"></div>
+      </div>
+    </section>
+
+    <!-- ============================ REVISIONS ============================ -->
+    <section class="view" id="view-revisions" hidden>
+      <div class="page-head">
+        <h1 data-i18n="rev.title">My revisions</h1>
+        <p data-i18n="rev.sub">Sessions are placed only in your real free slots: after classes, travel and rest, never at night.</p>
+      </div>
+      <div class="card rev-toolbar">
+        <p class="hint" data-i18n="rev.how">The schedule is computed by fixed, verifiable rules (no overlaps). AI only gives study advice in "My exams".</p>
+        <button class="btn btn-primary" id="revPlanBtn"><i data-lucide="wand-sparkles"></i><span data-i18n="rev.generate">Update my revision plan</span></button>
+      </div>
+      <div id="revShort"></div>
+      <div id="revList"></div>
+    </section>
+
+    <!-- ============================ NOTIFICATIONS ============================ -->
+    <section class="view" id="view-notifications" hidden>
+      <div class="page-head">
+        <h1 data-i18n="notif.title">My notifications</h1>
+        <p data-i18n="notif.sub">Gentle reminders after your classes, before revision sessions and around your exams.</p>
+      </div>
+      <div class="notif-layout">
+        <div class="card">
+          <div class="dd-head"><h2><i data-lucide="inbox"></i><span data-i18n="notif.internalT">In-app notifications</span></h2>
+            <button class="btn btn-ghost btn-sm" id="notifReadAll" data-i18n="notif.readAll">Mark all as read</button></div>
+          <div id="notifList"></div>
+        </div>
+        <div class="notif-side">
+          <div class="card" id="pushCard">
+            <h2><i data-lucide="bell-ring"></i><span data-i18n="push.title">Browser notifications</span></h2>
+            <p class="hint" data-i18n="push.explain">Receive reminders even when the BalanceAI tab is closed. Permission is only requested when you click the button.</p>
+            <div id="pushStatus"></div>
+            <div class="btn-row">
+              <button class="btn btn-primary btn-sm" id="pushEnable"><i data-lucide="bell-plus"></i><span data-i18n="push.enable">Enable</span></button>
+              <button class="btn btn-ghost btn-sm" id="pushDisable" hidden><i data-lucide="bell-off"></i><span data-i18n="push.disable">Disable</span></button>
+              <button class="btn btn-soft btn-sm" id="pushTest"><i data-lucide="send"></i><span data-i18n="push.test">Send a test</span></button>
+            </div>
+            <p class="hint small" data-i18n="push.limits">Pushes are sent by the BalanceAI server: it must be running, and the browser must be open (even in the background).</p>
+          </div>
+          <div class="card">
+            <h2><i data-lucide="clock"></i><span data-i18n="notif.upcoming">Upcoming reminders</span></h2>
+            <div id="upcomingList"></div>
+            <a class="link" href="#settings" data-i18n="notif.toSettings">Change reminder settings →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ SETTINGS ============================ -->
+    <section class="view" id="view-chat" hidden>
+      <div class="page-head"><h1 data-i18n="chat.title">BalanceAI assistant</h1><p data-i18n="chat.sub">Ask about studying, planning, focus or well-being.</p></div>
+      <div class="chat-layout">
+        <aside class="card chat-side"><button class="btn btn-primary btn-sm" id="chatNew" type="button" data-i18n="chat.new">New conversation</button>
+          <h2 data-i18n="chat.history">History</h2><div id="chatList"></div>
+          <button class="btn btn-ghost btn-sm danger" id="chatDeleteAll" type="button" data-i18n="chat.deleteAll">Delete all conversations</button></aside>
+        <div class="card chat-main">
+          <div id="chatLog" class="chat-log" role="log" aria-live="polite"></div>
+          <label class="chat-ctx"><input type="checkbox" id="chatContext" /> <span data-i18n="chat.context">Let the assistant use my exams</span></label>
+          <form id="chatForm" class="chat-form"><textarea id="chatInput" rows="2" maxlength="1500" data-i18n-ph="chat.ph" placeholder="Write your message…" aria-label="Message"></textarea>
+            <button class="btn btn-primary" id="chatSend" type="submit"><i data-lucide="send"></i><span data-i18n="chat.send">Send</span></button></form>
+          <p class="hint" data-i18n="chat.privacy"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-settings" hidden>
+      <div class="page-head">
+        <h1 data-i18n="set.title">Settings</h1>
+        <p data-i18n="set.sub">Profile, reminders and study preferences. Everything can be changed at any time.</p>
+      </div>
+      <form id="settingsForm" class="settings-form" novalidate>
+        <div id="settingsFields" class="settings-cards"></div>
+        <div class="form-error" id="settingsError" role="alert"></div>
+        <div class="settings-save"><button class="btn btn-primary btn-lg" type="submit" id="settingsSave"><i data-lucide="save"></i><span data-i18n="set.save">Save my settings</span></button></div>
+      </form>
+      <div class="card privacy-card">
+        <h2><i data-lucide="shield-check"></i><span data-i18n="set.secPrivacy">Privacy & device</span></h2>
+        <p class="hint"><span data-i18n="set.accountHint">Signed in as:</span> <strong id="accountEmail"></strong></p>
+        <div class="device-row"><button class="btn btn-ghost btn-sm" id="logoutAll" type="button" data-i18n="set.logoutAll">Sign out everywhere</button></div>
+        <button class="btn btn-ghost btn-sm danger" id="deleteServer"><i data-lucide="trash-2"></i><span data-i18n="set.deleteServer">Delete my timetable, exams and notifications</span></button>
+        <button class="btn btn-ghost btn-sm danger" id="deleteAccount" type="button"><i data-lucide="user-x"></i><span data-i18n="set.deleteAccount">Delete my account and all my data</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p data-i18n="footer.text">BalanceAI provides general well-being support, not medical diagnosis. Your data stays in this browser.</p>
+    <button class="btn btn-ghost btn-sm" id="clearData"><i data-lucide="trash-2"></i><span data-i18n="footer.clear">Clear my data</span></button>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="onboarding" hidden role="dialog" aria-modal="true" aria-labelledby="obTitle">
+    <form class="modal card" id="obForm" novalidate>
+      <h2 id="obTitle" data-i18n="ob.title">Welcome to BalanceAI 💜</h2>
+      <p class="hint" data-i18n="ob.sub">Three quick questions to adapt the app to you. You can change everything later in Settings.</p>
+      <p class="ob-label" data-i18n="ob.profile">You are…</p>
+      <div class="ob-profiles" role="radiogroup">
+        <button type="button" class="profile-card" data-profile="lycee" role="radio"><span class="pc-emoji">🎒</span><strong data-i18n="profile.lycee">High school</strong><small data-i18n="profile.lyceeHint">Lycée student</small></button>
+        <button type="button" class="profile-card" data-profile="universite" role="radio"><span class="pc-emoji">🎓</span><strong data-i18n="profile.universite">University</strong><small data-i18n="profile.universiteHint">Student, PFE, master…</small></button>
+        <button type="button" class="profile-card" data-profile="autre" role="radio"><span class="pc-emoji">🌿</span><strong data-i18n="profile.autre">Other</strong><small data-i18n="profile.autreHint">Graduate, job seeker, employee…</small></button>
+      </div>
+      <div id="obSchool">
+        <label class="field"><span data-i18n="ob.subjects">Your subjects (optional, comma separated)</span><input id="obSubjects" data-i18n-ph="ob.subjectsPh" maxlength="400" /></label>
+        <label class="check"><input type="checkbox" id="obTemplate" checked /><span data-i18n="ob.template">Start from a ready-made timetable that I can edit</span></label>
+      </div>
+      <div class="form-row">
+        <label class="field" id="obHomeField"><span data-i18n="set.home_time">Usual time back home</span><input type="time" id="obHome" /></label>
+        <label class="field" id="obRestField"><span data-i18n="set.rest_minutes">Rest time after classes</span>
+          <select id="obRest"><option value="0">0 min</option><option value="15">15 min</option><option value="30">30 min</option><option value="45" selected>45 min</option><option value="60">1 h</option><option value="90">1 h 30</option></select></label>
+        <label class="field"><span data-i18n="set.notif_lang">Notification language</span>
+          <select id="obNotifLang"><option value="fr">Français</option><option value="en">English</option><option value="tn">تونسي (Derja)</option></select></label>
+      </div>
+      <label class="check"><input type="checkbox" id="obReminders" checked /><span id="obRemindersLabel" data-i18n="ob.reminders">Send me a gentle check-in reminder at the end of my day</span></label>
+      <p class="hint small" data-i18n="ob.privacy">No name, e-mail or password needed. Your mood journal stays in this browser.</p>
+      <div class="form-error" id="obError" role="alert"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="obSkip" data-i18n="ob.skip">Later</button>
+        <button class="btn btn-primary" type="submit" id="obSave"><i data-lucide="check"></i><span data-i18n="ob.save">Let's go</span></button>
+      </div>
+    </form>
+  </div>
+
+
+  <script src="js/auth.js"></script>
+  <script src="js/vendor/lucide.min.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/i18n-school.js"></script>
+  <script src="js/i18n-chat.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/school.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>

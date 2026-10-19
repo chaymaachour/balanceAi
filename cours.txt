@@ -1,0 +1,6 @@
+﻿DES est un algorithme de chiffrement symétrique.
+DES utilise des blocs de 64 bits et une clé effective de 56 bits.
+
+AES est un algorithme de chiffrement plus moderne que DES.
+
+RAG récupère des passages pertinents dans des documents avant de générer une réponse avec un LLM.
