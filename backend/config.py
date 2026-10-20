@@ -15,7 +15,7 @@ AI_MODEL = os.getenv("AI_MODEL", "gemini-2.5-flash").strip()
 AI_TIMEOUT_SECONDS = float(os.getenv("AI_TIMEOUT_SECONDS", "45"))
 PORT = int(os.getenv("PORT", "5000"))
 HOST = os.getenv("HOST", "127.0.0.1")  # use 0.0.0.0 only behind a proper reverse proxy
-FRONTEND_DIR = ROOT_DIR / "frontend"
+FRONTEND_DIR = ROOT_DIR
 
 # Persistent storage (SQLite file, created automatically, ignored by Git)
 DATA_DIR = Path(os.getenv("DATA_DIR", str(ROOT_DIR / "data")))
