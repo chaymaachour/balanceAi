@@ -12,13 +12,23 @@
       welcome: "Bon retour", sub: "Connecte-toi pour retrouver ton emploi du temps, tes examens et tes conversations.", subUp: "Tes données restent privées, liées à ton compte.", wait: "Un instant…" },
   };
   let csrf = null, gate = null;
+  const API_BASE = "https://balanceai-ufbo.onrender.com";
   const raw = window.fetch.bind(window);
   window.fetch = (url, opts = {}) => {
     const same = typeof url === "string" && url.startsWith("/");
     if (same) opts = { ...opts, credentials: "same-origin", headers: { ...(opts.headers || {}), ...(csrf ? { "X-CSRF-Token": csrf } : {}) } };
     return raw(url, opts).then((r) => { if (r.status === 401 && same && !url.startsWith("/api/auth/")) showGate(); return r; });
   };
-  const call = (path, body) => raw(path, { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json", ...(csrf ? { "X-CSRF-Token": csrf } : {}) }, body: JSON.stringify(body || {}) });
+const call = (path, body) =>
+  raw(`${API_BASE}${path}`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      ...(csrf ? { "X-CSRF-Token": csrf } : {})
+    },
+    body: JSON.stringify(body || {})
+  });
   const legacyId = () => { const v = localStorage.getItem("balanceai.device"); return v && /^[a-z0-9-]{16,40}$/.test(v) ? v : null; };
 
   function el(tag, attrs = {}, text) { const e = document.createElement(tag); Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v)); if (text) e.textContent = text; return e; }
@@ -64,8 +74,10 @@
     csrf = null; location.reload();
   }
   async function boot() {
-    try {
-      const r = await raw("/api/auth/me", { credentials: "same-origin" }), d = await r.json();
+    try {const r = await raw(`${API_BASE}/api/auth/me`, {
+  credentials: "include"
+});
+const d = await r.json();
       if (d.authenticated) { csrf = d.csrf; window.BAAuth.email = d.email; document.dispatchEvent(new Event("ba-auth")); } else showGate();
     } catch { showGate(); }
   }
